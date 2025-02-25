@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { addUser } from "./Redux/sliceReducer/userSlice";
 
 
 const Login = () => {
+  const dispatch =useDispatch()
 
     const [formData, setFormData] = useState({
         email: "",
@@ -27,6 +30,8 @@ const Login = () => {
         }, { withCredentials: true })
 
         console.log(UserSinginRequest)
+
+        dispatch(addUser(UserSinginRequest.data.data))
     } catch (error) {
         console.log(error) 
     }
