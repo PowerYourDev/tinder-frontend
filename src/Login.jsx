@@ -1,15 +1,19 @@
-import axios from "axios";
-import { useState } from "react"
-import { useDispatch } from "react-redux";
-import { addUser } from "./Redux/sliceReducer/userSlice";
+
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { userSignin } from "./Redux/sliceReducer/userSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
   const dispatch =useDispatch()
+  const navigate=useNavigate()
+  const {error,data,loading}=useSelector((store)=>store.userSlice)
 
+console.log(error,data,loading)
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+        email: "ram@gmail.com",
+        password: "Ram@1234"
       });
 
 
@@ -24,18 +28,17 @@ const Login = () => {
     }
 
     const handleSubmit=async()=>{
-    try {
-        const UserSinginRequest= await axios.post('http://localhost:5000/api/auth/singin',{
-            email:"ram@gmail.com",password:"Ram@1234"
-        }, { withCredentials: true })
+   
 
-        console.log(UserSinginRequest)
-
-        dispatch(addUser(UserSinginRequest.data.data))
-    } catch (error) {
-        console.log(error) 
+      // Dispatch the userSignin thunk
+      dispatch(userSignin(formData));
+      
     }
-    }
+    useEffect(()=>{
+   if(data){
+    navigate('/feed')
+   }
+    },[data,navigate])
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -51,8 +54,11 @@ const Login = () => {
    </div>
 
    <div className="flex justify-center my-3">
-   <button className="btn w-28" onClick={handleSubmit}>Button</button>
+   <button className="btn w-28" onClick={handleSubmit}>Sign In</button>
    </div>
+   {
+    error&& <p className="text-red-400">something went wrong</p>
+   }
 
   </div>
 </div>
