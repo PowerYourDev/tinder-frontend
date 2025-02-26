@@ -1,25 +1,8 @@
-import axios from 'axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const userSignin = createAsyncThunk(
-  'user/signin', 
-  async (userCredentials, { rejectWithValue }) => {
-    try {
+import { createSlice } from '@reduxjs/toolkit';
+import {userSignin,userLogOut} from "../reduxThunk/userThunk"
 
-      const response = await axios.post(
-        'http://localhost:5000/api/auth/singin',
-        userCredentials,
-        { withCredentials: true }
-      );
 
- 
-      return response.data;
-    } catch (error) {
-   
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
 // Create the slice
 const userSlice = createSlice({
@@ -32,8 +15,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      
-      .addCase(userSignin.pending, (state) => {
+    .addCase(userSignin.pending, (state) => {
         state.loading = true;
       })
 
@@ -46,7 +28,24 @@ const userSlice = createSlice({
       .addCase(userSignin.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+
+      .addCase(userLogOut.pending, (state) => {
+        state.loading = true;
+      })
+
+      .addCase(userLogOut.fulfilled, (state) => {
+        state.loading = false;
+        state.data = null;
+        state.error = null;
+      })
+     
+      .addCase(userLogOut.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
+
+
   },
 });
 

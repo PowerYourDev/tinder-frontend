@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { userSignin } from "./Redux/sliceReducer/userSlice";
+import { userSignin } from "./Redux/reduxThunk/userThunk";
 import { useNavigate } from "react-router-dom";
 
 
@@ -57,7 +57,7 @@ console.log(error,data,loading)
    <button className="btn w-28" onClick={handleSubmit}>Sign In</button>
    </div>
    {
-    error&& <p className="text-red-400">something went wrong</p>
+    error&& <p className="text-red-400">{error?.response?.data.message}</p>
    }
 
   </div>
