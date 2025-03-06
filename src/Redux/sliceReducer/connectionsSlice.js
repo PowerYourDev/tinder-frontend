@@ -1,31 +1,64 @@
 import { createSlice } from "@reduxjs/toolkit";
-import connections from "../reduxThunk/connectionThunk"
+import {connectionsApi,connectionsRequestApi,connectionsRequestReviewApi} from "../reduxThunk/connectionThunk"
 
 
 const connectionns= createSlice({
     name:"connections",
     initialState:{
-        data:null,
+        connections:null,
+        connectionRequests:null,
         error:null,
         loading:false
     },
     reducers:{},
     extraReducers: (builder) => {
              builder
-             .addCase(connections.pending, (state) => {
+             .addCase(connectionsApi.pending, (state) => {
                  state.loading = true;
                })
          
-               .addCase(connections.fulfilled, (state, action) => {
+               .addCase(connectionsApi.fulfilled, (state, action) => {
                  state.loading = false;
-                 state.data = action.payload;
+                 state.connections = action.payload;
                  state.error = null;
                })
               
-               .addCase(connections.rejected, (state, action) => {
+               .addCase(connectionsApi.rejected, (state, action) => {
                  state.loading = false;
                  state.error = action.payload;
                })
+
+
+               .addCase(connectionsRequestApi.pending, (state) => {
+                state.loading = true;
+              })
+        
+              .addCase(connectionsRequestApi.fulfilled, (state, action) => {
+                state.loading = false;
+                state.connectionRequests = action.payload;
+                state.error = null;
+              })
+             
+              .addCase(connectionsRequestApi.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+              })
+
+
+              .addCase(connectionsRequestReviewApi.pending, (state) => {
+                state.loading = true;
+              })
+        
+              .addCase(connectionsRequestReviewApi.fulfilled, (state, action) => {
+                state.loading = false;
+                state.connectionRequests = state.connectionRequests.filter((request)=> request._id !== action.payload._id);
+                state.error = null;
+              })
+             
+              .addCase(connectionsRequestReviewApi.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+              })
          
                
          

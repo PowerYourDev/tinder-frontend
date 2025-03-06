@@ -60,6 +60,13 @@ const Header = () => {
            
           </a>
         </li>
+
+        <li onClick={()=>handleNavigate("/Connections-requestes")}>
+          <a className="justify-between">
+            connection Requests
+           
+          </a>
+          </li>
         <li onClick={handleUserLogoout}><a>Logout</a></li>
       </ul>
     </div>
