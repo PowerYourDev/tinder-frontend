@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { userSignin } from "./Redux/reduxThunk/userThunk";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const Login = () => {
   const {error,data,loading}=useSelector((store)=>store.userSlice)
 
 console.log(error,data,loading)
+
     const [formData, setFormData] = useState({
         email: "ram@gmail.com",
         password: "Ram@1234"
@@ -31,14 +32,19 @@ console.log(error,data,loading)
    
 
       // Dispatch the userSignin thunk
-      dispatch(userSignin(formData));
+     const response= await dispatch(userSignin(formData));
+     console.log(response)
+
+     if(response.payload.status==200){
+      navigate('/feed')
+     }
       
     }
-    useEffect(()=>{
-   if(data){
-    navigate('/feed')
-   }
-    },[data,navigate])
+  //   useEffect(()=>{
+  //  if(data){
+  //   navigate('/feed')
+  //  }
+  //   },[data,navigate])
 
   return (
     <div className="flex justify-center items-center h-screen">

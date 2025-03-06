@@ -7,7 +7,8 @@ import storage from "redux-persist/lib/storage";
 
 
 import userSlice from "./sliceReducer/userSlice"
-
+import FeedSlice from "./sliceReducer/FeedSlice"
+import ProfileSlice from "./sliceReducer/ProfileSlice"
 
 
 
@@ -16,6 +17,8 @@ import userSlice from "./sliceReducer/userSlice"
 
 const reducer = combineReducers({
     userSlice: userSlice,
+    FeedSlice:FeedSlice,
+    ProfileSlice:ProfileSlice
   
   });
 

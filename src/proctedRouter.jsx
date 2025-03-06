@@ -4,9 +4,10 @@ import {useSelector} from "react-redux"
 
 const ProctedRouter = () => {
 
-  const user= useSelector((store)=>store.userSlice.data)
+  const user= useSelector((store)=>store?.userSlice?.data)
   
-  return user ? <Outlet /> : <Navigate to="/" replace={true} />;
+  
+  return user?.password ? <Outlet /> : <Navigate to="/" replace={true} />;
 }
 
 export default ProctedRouter

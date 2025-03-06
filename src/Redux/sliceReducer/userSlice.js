@@ -21,7 +21,7 @@ const userSlice = createSlice({
 
       .addCase(userSignin.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data = action.payload.data.data;
         state.error = null;
       })
      
@@ -43,7 +43,11 @@ const userSlice = createSlice({
       .addCase(userLogOut.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+
+
+     
 
 
   },

@@ -1,10 +1,12 @@
 import { useSelector,useDispatch } from "react-redux"
 import { userLogOut } from "../Redux/reduxThunk/userThunk"
+import { useNavigate } from "react-router-dom"
 
 
 
 const Header = () => {
   const dispatch=useDispatch()
+  const navigate=useNavigate()
 
     const user=useSelector((store)=>store.userSlice.data)
     console.log(user)
@@ -12,6 +14,14 @@ const Header = () => {
     const handleUserLogoout=()=>{
       console.log("sjds")
       dispatch(userLogOut())
+    }
+
+    const handleProfileNavigate=()=>{
+      navigate("/profile")
+    } 
+
+    const handleFeedNavigate=()=>{
+      navigate("/feed")
     }
   return (
     <div>
@@ -28,19 +38,24 @@ const Header = () => {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src={user.data.photoUrl} />
+            src={user.photoUrl} />
         </div>
       </div>
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>
+        <li onClick={handleProfileNavigate}>
           <a className="justify-between">
             Profile
-            <span className="badge">New</span>
+           
           </a>
         </li>
-        <li><a>Settings</a></li>
+        <li onClick={handleFeedNavigate}>
+          <a className="justify-between">
+            feed
+           
+          </a>
+        </li>
         <li onClick={handleUserLogoout}><a>Logout</a></li>
       </ul>
     </div>

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const FeedPage=  React.lazy(()=>import('./Pages/FeedPage')) 
 const Login=  React.lazy(()=>import('./Login')) 
+const ProfileUpdate= React.lazy(()=>import('./Pages/ProfileUpdate'))
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
 
     <Route element={<ProtectedRouter/>}>
      <Route path="/feed" element={<FeedPage/>}/>
+     <Route path="/profile" element={<ProfileUpdate/>}/>
+
+
 
   
     </Route>
