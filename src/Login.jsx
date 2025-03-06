@@ -13,8 +13,8 @@ const Login = () => {
 console.log(error,data,loading)
 
     const [formData, setFormData] = useState({
-        email: "ram@gmail.com",
-        password: "Ram@1234"
+        email: "saiteja@gmail.com",
+        password: "Sai@1234"
       });
 
 

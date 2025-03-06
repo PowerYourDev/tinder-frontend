@@ -16,13 +16,11 @@ const Header = () => {
       dispatch(userLogOut())
     }
 
-    const handleProfileNavigate=()=>{
-      navigate("/profile")
+    const handleNavigate=(path)=>{
+      navigate(path)
     } 
 
-    const handleFeedNavigate=()=>{
-      navigate("/feed")
-    }
+   
   return (
     <div>
         <div className="navbar bg-base-100">
@@ -44,13 +42,19 @@ const Header = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li onClick={handleProfileNavigate}>
+        <li onClick={()=>handleNavigate("/profile")}>
           <a className="justify-between">
             Profile
            
           </a>
         </li>
-        <li onClick={handleFeedNavigate}>
+        <li onClick={()=>handleNavigate("/connections")}>
+          <a className="justify-between">
+            connections
+           
+          </a>
+          </li>
+        <li onClick={()=>handleNavigate("/feed")}>
           <a className="justify-between">
             feed
            
