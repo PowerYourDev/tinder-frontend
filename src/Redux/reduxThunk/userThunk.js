@@ -8,7 +8,7 @@ export const userSignin = createAsyncThunk(
   
         const response = await axios.post(
           'http://localhost:5000/api/auth/singin',
-          userCredentials,
+          {email:userCredentials.email,password:userCredentials.password},
           { withCredentials: true }
         );
   
@@ -21,6 +21,17 @@ export const userSignin = createAsyncThunk(
     }
   );
 
+
+  export const userSingUp=createAsyncThunk('user/singup',async(formData,{rejectWithValue})=>{
+    try{
+       const response = await axios.post('http://localhost:5000/api/auth/singup',formData,{withCredentials:true})
+       return response
+    }catch(error){
+      console.log(error)
+      return rejectWithValue(error);
+
+    }
+  })
 
   export const userLogOut=createAsyncThunk('auth/logout',async(_,{rejectWithValue})=>{
     try{

@@ -1,11 +1,11 @@
-// import Header from "../../Components/Header"
+import Header from "../../Components/Header"
 import Profile from "../../Components/Profile"
 
 const ProfilePage = () => {
   return (
     <div>
 
-        {/* <Header/> */}
+        <Header/>
         <Profile/>
     </div>
   )

@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import {userSignin,userLogOut} from "../reduxThunk/userThunk"
+import {userSignin,userLogOut,userSingUp} from "../reduxThunk/userThunk"
 
 
 
@@ -26,6 +26,21 @@ const userSlice = createSlice({
       })
      
       .addCase(userSignin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(userSingUp.pending, (state) => {
+        state.loading = true;
+      })
+
+      .addCase(userSingUp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload.data.data;
+        state.error = null;
+      })
+     
+      .addCase(userSingUp.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

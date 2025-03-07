@@ -1,37 +1,51 @@
-import { useEffect } from "react"
-import { useDispatch,useSelector } from "react-redux"
-
-import FeedCard from "./FeedCard"
-
-import { feedData } from "../Redux/reduxThunk/feedThunk"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FeedCard from "./FeedCard";
+import { feedData } from "../Redux/reduxThunk/feedThunk";
 
 const Feed = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
+  const { error, loading, data } = useSelector((store) => store.FeedSlice);
 
-const {error,loading,data}=useSelector((store)=>store.FeedSlice)
-console.log(data,"djjdjd")
-const userFeed=data&&data[0]
-    
-console.log(error,loading,data)
+  useEffect(() => {
+    dispatch(feedData());
+  }, [dispatch]);
+
+ 
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
 
-useEffect(()=>{
-  dispatch(feedData())
+  if (error) {
+    return (
+      <div>
+        <h1>Something went wrong, please try again later.</h1>
+      </div>
+    );
+  }
 
-},[dispatch])
 
-if(!data) return
-    
+  if (!data || data.length === 0) {
+    return (
+      <div>
+        <h1>No profiles found</h1>
+      </div>
+    );
+  }
+
+ 
   return (
-
-    
     <div>
       
-
-      <FeedCard userFeed={userFeed}/>
-      
+        <FeedCard key={data[0]._id} userFeed={data[0]} />
+  
     </div>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;

@@ -6,7 +6,7 @@ import {connectionsRequestApi,connectionsRequestReviewApi} from "../Redux/reduxT
 const ConnectionRequests = () => {
     const dispatch=useDispatch()
 
-    const {connectionRequests}=useSelector((store)=>store.connectionsSlice)
+    const {connectionRequests,loading}=useSelector((store)=>store.connectionsSlice)
 
     console.log(connectionRequests,"uediw")
 
@@ -20,6 +20,23 @@ const accepectOrRejectRequest=(status,_id)=>{
 
 }
 
+if(loading){
+    return <>
+    
+    <h1> loading</h1>
+    
+    </>
+}
+
+if(connectionRequests.length <= 0){
+    return <>
+    
+    <h1> no pending requests</h1>
+    
+    </>
+}
+
+
     
   return (
     <div className="flex justify-center items-center flex-col gap-3">
@@ -29,7 +46,7 @@ const accepectOrRejectRequest=(status,_id)=>{
         </h1>
 <div >
         {
-            connectionRequests.map((connection,index)=>{
+            connectionRequests?.map((connection,index)=>{
                 return (<div key={index} className="flex items-center gap-3 border-2 my-2  p-2">
                       <div className="rounded-full">
                         <img src={connection.fromUserId.photoUrl} alt="" className="w-16 h-16 rounded-full" />
