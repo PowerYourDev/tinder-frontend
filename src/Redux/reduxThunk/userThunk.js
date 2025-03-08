@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../constant";
 
 export const userSignin = createAsyncThunk(
     'auth/signin', 
@@ -7,7 +8,7 @@ export const userSignin = createAsyncThunk(
       try {
   
         const response = await axios.post(
-          'http://localhost:5000/api/auth/singin',
+          `${BASE_URL}/api/auth/singin`,
           {email:userCredentials.email,password:userCredentials.password},
           { withCredentials: true }
         );
@@ -24,7 +25,7 @@ export const userSignin = createAsyncThunk(
 
   export const userSingUp=createAsyncThunk('user/singup',async(formData,{rejectWithValue})=>{
     try{
-       const response = await axios.post('http://localhost:5000/api/auth/singup',formData,{withCredentials:true})
+       const response = await axios.post(`${BASE_URL}/api/auth/singup`,formData,{withCredentials:true})
        return response
     }catch(error){
       console.log(error)
@@ -35,7 +36,7 @@ export const userSignin = createAsyncThunk(
 
   export const userLogOut=createAsyncThunk('auth/logout',async(_,{rejectWithValue})=>{
     try{
-        const response=await axios.post('http://localhost:5000/api/auth/logout',{}, { withCredentials: true })
+        const response=await axios.post(`${BASE_URL}/api/auth/logout`,{}, { withCredentials: true })
         return response.data
     }catch( error){
         return rejectWithValue(error);
