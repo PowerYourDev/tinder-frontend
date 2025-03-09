@@ -28,13 +28,9 @@ if(loading){
     </>
 }
 
-if(connectionRequests.length <= 0){
-    return <>
-    
-    <h1> no pending requests</h1>
-    
-    </>
-}
+if (!connectionRequests || connectionRequests.length <= 0) {
+    return <h1>No pending requests</h1>;
+  }
 
 
     
