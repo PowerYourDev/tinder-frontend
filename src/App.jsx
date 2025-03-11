@@ -8,7 +8,7 @@ const Login=  React.lazy(()=>import('./Login'))
 const ProfileUpdate= React.lazy(()=>import('./Pages/ProfileUpdate'))
 const Connection= React.lazy(()=>import('./Pages/ConnectionPage'))
 const ConnectionRequest= React.lazy(()=>import('./Pages/connectionRequest'))
-
+const Chat= React.lazy(()=>import('./Pages/ChatPage'))
 
 function App() {
   
@@ -25,6 +25,7 @@ function App() {
      <Route path="/profile" element={<ProfileUpdate/>}/>
      <Route path="/connections" element={<Connection/>}/>
      <Route path="/Connections-requestes" element={<ConnectionRequest/>}/>
+     <Route path="/chat/:userRequestId" element={<Chat/>}/>
 
 
 

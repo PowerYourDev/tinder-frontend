@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { BASE_URL } from "../../constant";
+import { BASE_URL } from "../../utilis/constant";
 
 
 export const feedData=createAsyncThunk('feed',async(_,{rejectWithValue})=>{
