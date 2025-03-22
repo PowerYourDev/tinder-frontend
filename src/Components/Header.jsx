@@ -1,6 +1,8 @@
 import { useSelector,useDispatch } from "react-redux"
-import { userLogOut } from "../Redux/reduxThunk/userThunk"
+// import { userLogOut } from "../Redux/reduxThunk/userThunk"
 import { useNavigate } from "react-router-dom"
+
+import { persistor } from "../main"
 
 
 
@@ -8,12 +10,19 @@ const Header = () => {
   const dispatch=useDispatch()
   const navigate=useNavigate()
 
-    const user=useSelector((store)=>store.userSlice.data)
-    console.log(user)
+    const userData=useSelector((store)=>store.userSlice.data)
+    const profileData=useSelector((store)=>store?.ProfileSlice)
+
+     const user=profileData.data?profileData.data:userData 
+    
 
     const handleUserLogoout=()=>{
       console.log("sjds")
-      dispatch(userLogOut())
+      // dispatch(userLogOut())
+
+      dispatch({ type: "RESET_STATE" })
+
+      persistor.purge();
     }
 
     const handleNavigate=(path)=>{
@@ -23,7 +32,7 @@ const Header = () => {
    
   return (
     <div>
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-300">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl">DeV MeeT</a>
   </div>

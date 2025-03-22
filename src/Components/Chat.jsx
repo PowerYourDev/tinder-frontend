@@ -1,10 +1,11 @@
 
-import { useEffect,  useState } from "react"
+import { useEffect,  useRef,  useState } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { createSocketConnnection } from "../utilis/socket"
 import axios from "axios"
 import { BASE_URL } from "../utilis/constant"
+
 
 
 
@@ -71,6 +72,18 @@ console.log(messages)
 
 
 
+   const messagesEndRef = useRef(null);
+
+   // Use useEffect to scroll to the last message when messages change
+   useEffect(() => {
+     // Scroll to the bottom of the container
+     if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: 'instant' });
+      }
+   }, [messages]);
+
+
+
 
   return (
     <div className="w-full flex justify-center ">
@@ -82,14 +95,14 @@ console.log(messages)
          {/* messages */}
          
         <div className="flex flex-col h-[70vh]"> 
-        <div className="flex-1 flex">
-            <div className="w-full m-2">
+        <div className="flex-1 flex overflow-y-auto mb-10 scroll">
+            <div className="w-full m-2 ">
 
                 {messages?.map((message,index)=>{
 
                 
                 
-                return <div key={index} className="chat chat-start">
+                return  <div key={index} className={`chat ${message._id===loggedInUserId?'chat-end':'chat-start'} `}>
                 <div className="chat-image avatar">
                   <div className="w-10 rounded-full">
                     <img
@@ -103,25 +116,16 @@ console.log(messages)
                 </div>
                 <div className="chat-bubble">{message.text}</div>
                 <div className="chat-footer opacity-50">Delivered</div>
+
+
+
               </div>
+
+
                 }
                 )}
            
-{/* <div className="chat chat-end">
-  <div className="chat-image avatar">
-    <div className="w-10 rounded-full">
-      <img
-        alt="Tailwind CSS chat bubble component"
-        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-    </div>
-  </div>
-  <div className="chat-header">
-    Anakin
-    <time className="text-xs opacity-50">12:46</time>
-  </div>
-  <div className="chat-bubble">I hate you!</div>
-  <div className="chat-footer opacity-50">Seen at 12:46</div>
-</div> */}
+ <div ref={messagesEndRef} />
 
             </div>
       

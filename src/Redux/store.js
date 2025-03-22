@@ -24,6 +24,14 @@ const reducer = combineReducers({
   
   });
 
+   const rootReducer = (state, action) => {
+    if (action.type === "RESET_STATE") {
+      // Reset the state to initial values
+      state = undefined; // This will reset the state to its initial state
+    }
+    return reducer(state, action);
+  };
+
 
 const persistConfig = {
     key: "root",
@@ -31,7 +39,7 @@ const persistConfig = {
     storage,
     
   };
-  const persistedReducer = persistReducer(persistConfig, reducer);
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
 
   const store = configureStore({
     reducer: persistedReducer,
