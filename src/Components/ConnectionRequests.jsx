@@ -43,7 +43,7 @@ if (!connectionRequests || connectionRequests.length <= 0) {
 <div >
         {
             connectionRequests?.map((connection,index)=>{
-                return (<div key={index} className="flex items-center gap-3 border-2 my-2  p-2">
+                return (<div key={index} className="w-[90%] md:w-[50%] flex items-center gap-3 border-2 my-2  p-2">
                       <div className="rounded-full">
                         <img src={connection.fromUserId.photoUrl} alt="" className="w-16 h-16 rounded-full" />
                       </div>

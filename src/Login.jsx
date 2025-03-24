@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 const Login = () => {
   const dispatch =useDispatch()
   const navigate=useNavigate()
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
 
@@ -71,7 +71,7 @@ console.log(error,data,loading)
                 },
               })}
 />
-{singIn && errors?.firstName && (
+{!singIn && errors?.firstName && (
             <p className="text-red-500">{errors?.firstName?.message}</p>
           )}
 
@@ -89,7 +89,7 @@ console.log(error,data,loading)
 
 
    />
-   {singIn && errors?.lastName && (
+   {!singIn && errors?.lastName && (
             <p className="text-red-500">{errors?.lastName?.message}</p>
           )}
    </div>

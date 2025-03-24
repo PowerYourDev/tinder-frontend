@@ -31,7 +31,7 @@ const handleConnectionChat=(id)=>{
         <h1 className="text-xl pt-2">
             Connections
         </h1>
-<div className="w-[50%] overflow-y-scroll scrolling-hide" >
+<div className="w-[90%] md:w-[50%] overflow-y-scroll scrolling-hide" >
         {
             connections.map((connection,index)=>{
                 return (<div key={index} className="flex items-center justify-between gap-3 border-b my-2  p-3 overflow-auto">

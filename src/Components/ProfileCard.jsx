@@ -8,7 +8,7 @@ const ProfileCard = ({userFeed,handleShowProfile}) => {
   return (
     <div className="w-full">
        <div className="flex justify-center">
-        <div className="flex justify-end  w-[24%]">
+        <div className="flex justify-end  w-[90%] md:w-[24%] ">
        <div onClick={handleShowProfile} className={`w-[150px] flex cursor-pointer gap-2 justify-center items-center p-2 bg-green-500 rounded-md shadow-md hover:bg-green-600 transition-colors duration-300 `}>
             <CgProfile className="text-white text-3xl" /> <p className="text-white">show form</p>
           </div>
@@ -17,7 +17,7 @@ const ProfileCard = ({userFeed,handleShowProfile}) => {
      <div className="flex  justify-center items-center w-full mt-2 ">
        
     
-      <div className="w-[24%] flex flex-col items-center p-3 bg-[#323650] rounded-xl  ">
+      <div className="w-[90%] md:w-[24%]  flex flex-col items-center p-3 bg-[#323650] rounded-xl  ">
         
     
           <div className="w-[100%]   pt-2">

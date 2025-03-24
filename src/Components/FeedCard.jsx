@@ -48,7 +48,7 @@ const handleSendRequest=(status,_id)=>{
     </div>
   </div> */}
 
-  <div className="w-[24%]  flex flex-col items-center justify-center  p-3 bg-[#323650] rounded-xl  ">
+  <div className="w-[90%] md:w-[24%]  flex flex-col items-center justify-center  p-3 bg-[#323650] rounded-xl  ">
       {/* <div className="w-[30%] h-[30%] pt-[6%]">
         <img src={photoUrl} alt="" className="rounded-full w-full h-full border" />
       </div> */}
