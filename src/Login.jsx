@@ -26,25 +26,10 @@ const Login = () => {
 
 console.log(error,data,loading)
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-        lastName:"",
-        firstName:"",
-      });
+    
 
 
-    const handleInputChange=(e)=>{
-        const {name,value} = e.target
-
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-          }));
-       
-    }
-
-  
+    
 
     const onSubmit=async(data)=>{
      const {email,
