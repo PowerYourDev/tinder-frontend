@@ -39,7 +39,7 @@ console.log(error,data,loading)
    
 
       // Dispatch the userSignin thunk
-     const response= await dispatch(singIn?userSignin({email,password}):userSingUp(email,password,lastName,firstName));
+     const response= await dispatch(singIn?userSignin({email,password}):userSingUp({email,password,lastName,firstName}));
      console.log(response)
 
      if(response.payload.status==200){
@@ -71,7 +71,7 @@ console.log(error,data,loading)
                 },
               })}
 />
-{!singIn && errors?.firstName && (
+{ errors?.firstName && (
             <p className="text-red-500">{errors?.firstName?.message}</p>
           )}
 
@@ -89,7 +89,7 @@ console.log(error,data,loading)
 
 
    />
-   {!singIn && errors?.lastName && (
+   { errors?.lastName && (
             <p className="text-red-500">{errors?.lastName?.message}</p>
           )}
    </div>

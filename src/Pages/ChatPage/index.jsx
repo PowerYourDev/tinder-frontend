@@ -4,7 +4,7 @@ import Header from "../../Components/Header"
 
 const index = () => {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
         
         <Header/>
         <Chat/>

@@ -86,15 +86,15 @@ console.log(messages)
 
 
   return (
-    <div className="w-full flex justify-center ">
-    <div className="w-[70%]  border ">
+    <div className="w-full flex justify-center flex-1  my-3">
+    <div className="w-[95%] md:w-[70%]  border flex flex-col">
          <div className="border-b ">
             <h3>Chat</h3>
          </div>
 
          {/* messages */}
          
-        <div className="flex flex-col h-[70vh]"> 
+        <div className="flex flex-col  flex-1   "> 
         <div className="flex-1 flex overflow-y-auto mb-10 scroll">
             <div className="w-full m-2 ">
 
