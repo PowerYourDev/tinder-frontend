@@ -69,6 +69,10 @@ console.log(error,data,loading)
                   value: true,
                   message: "firstName is required",
                 },
+                minLength: {
+                  value: 3,
+                  message: "FirstName must be at least 3 characters",
+                },
               })}
 />
 { errors?.firstName && (
