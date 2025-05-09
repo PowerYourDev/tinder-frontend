@@ -59,20 +59,20 @@ const Header = () => {
         </li>
         <li onClick={()=>handleNavigate("/connections")}>
           <a className="justify-between">
-            connections
+            Connections
            
           </a>
           </li>
         <li onClick={()=>handleNavigate("/feed")}>
           <a className="justify-between">
-            feed
+            Feed
            
           </a>
         </li>
 
         <li onClick={()=>handleNavigate("/Connections-requestes")}>
           <a className="justify-between">
-            connection Requests
+            Connection Requests
            
           </a>
           </li>

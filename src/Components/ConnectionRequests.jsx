@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {connectionsRequestApi,connectionsRequestReviewApi} from "../Redux/reduxThunk/connectionThunk"
+import ShowMessage from "../utilis/common/showMessage"
 
 
 const ConnectionRequests = () => {
@@ -21,15 +22,11 @@ const accepectOrRejectRequest=(status,_id)=>{
 }
 
 if(loading){
-    return <>
-    
-    <h1> loading</h1>
-    
-    </>
+    return 
 }
 
 if (!connectionRequests || connectionRequests.length <= 0) {
-    return <h1>No pending requests</h1>;
+    return <ShowMessage info={"You currently have no pending requests."} />;
   }
 
 

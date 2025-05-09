@@ -3,7 +3,7 @@ import Header from "../../Components/Header"
 
 const ConnectionRequestPage = () => {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
     <Header/>
         <ConnectionRequests/>
         

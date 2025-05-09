@@ -13,7 +13,7 @@ const FeedCard = ({userFeed}) => {
   const dispatch =useDispatch()
     const {firstName,lastName,photoUrl,about,age,gender}=userFeed 
 
-
+    console.log(userFeed,"heleeele")
 
 
 

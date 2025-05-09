@@ -4,6 +4,7 @@ import {connectionsApi} from "../Redux/reduxThunk/connectionThunk"
 import { useNavigate } from "react-router-dom"
 
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import ShowMessage from "../utilis/common/showMessage";
 
 
 
@@ -11,7 +12,7 @@ const Connection = () => {
 const dispatch=useDispatch()
 const navigate=useNavigate()
 
-const{connections}=useSelector((store)=>store.connectionsSlice)
+const{connections,loading}=useSelector((store)=>store.connectionsSlice)
 
 
 const handleConnectionChat=(id)=>{
@@ -22,8 +23,14 @@ const handleConnectionChat=(id)=>{
         dispatch(connectionsApi())
     },[dispatch])
 
+    if(loading){
+      return <h1>load</h1>
+    }
 
-    if(!connections) return <h1>loading</h1> 
+
+    if (!connections || connections.length <= 0) {
+      return <ShowMessage info={"You don't have any friends yet. Please make some connections!"} />;
+    }
   return (
     <div className="w-full">
        <div className="flex justify-center items-center flex-col gap-3 ">

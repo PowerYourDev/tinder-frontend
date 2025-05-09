@@ -40,13 +40,26 @@ console.log(error,data,loading)
 
       // Dispatch the userSignin thunk
      const response= await dispatch(singIn?userSignin({email,password}):userSingUp({email,password,lastName,firstName}));
-     console.log(response)
+     console.log(response,"kkkk")
 
      if(response.payload.status==200){
+      if(response.payload.data.data.age && response.payload.data.data.gender ){
+        navigate('/feed')
+      }else{
+        navigate("/profile")
+      }
       toast.success("login successfull")
-      navigate('/feed')
+      
      }else{
-      toast.error("something went Wrong please.. try again ")
+      
+      const errorMessage = response.payload?.response?.data?.message;
+    
+      if (errorMessage) {
+        toast.error(errorMessage);  // Show the custom error message from the response
+      } else {
+        toast.error("Something went wrong. Please try again.");  // Default error message
+      }
+    
      }
       
     }
@@ -67,11 +80,11 @@ console.log(error,data,loading)
    <input type="text" className="bg-transparent border p-1.5 rounded-md "   name="firstName" placeholder="First Name"              {...register("firstName", {
                 required: {
                   value: true,
-                  message: "firstName is required",
+                  message: "FirstName is required",
                 },
                 minLength: {
-                  value: 3,
-                  message: "FirstName must be at least 3 characters",
+                  value: 4,
+                  message: "FirstName must be at least 4 characters",
                 },
               })}
 />
@@ -86,7 +99,7 @@ console.log(error,data,loading)
     {...register("lastName", {
       required: {
         value: true,
-        message: "lastName is required",
+        message: "LastName is required",
       },
     })}
 
@@ -107,7 +120,7 @@ console.log(error,data,loading)
     {...register("email", {
       required: {
         value: true,
-        message: "email is required",
+        message: "Email is required",
       },
       pattern: {
         value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
@@ -123,7 +136,7 @@ console.log(error,data,loading)
    {/* <label htmlFor="">Password</label> */}
    <input type="password"  name="password" placeholder="Password" className="bg-transparent border  p-1.5 rounded-md "  
     {...register("password", {
-      required: { value: true, message: "password is required" },
+      required: { value: true, message: "Password is required" },
       pattern: {
         value:
           /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -143,7 +156,7 @@ console.log(error,data,loading)
 
 
    {
-    singIn ? <p className="font-normal text-base text-[rgba(255,255,255,0.7)]">New to dev-conect? <u onClick={handleSingIn} className="font-medium text-[rgb(255,255,255)] cursor-pointer"> Sign Up</u></p>: <p className="font-normal text-base text-[rgba(255,255,255,0.7)]">Already registered?  <u onClick={handleSingIn} className="font-medium text-[rgb(255,255,255)] cursor-pointer">Sign In</u> </p> 
+    singIn ? <p className="font-normal text-base text-[rgba(255,255,255,0.7)]">New to Dev-Conect? <u onClick={handleSingIn} className="font-medium text-[rgb(255,255,255)] cursor-pointer"> Sign Up</u></p>: <p className="font-normal text-base text-[rgba(255,255,255,0.7)]">Already registered?  <u onClick={handleSingIn} className="font-medium text-[rgb(255,255,255)] cursor-pointer">Sign In</u> </p> 
    }
    {
     error&& <p className="text-red-400">{error?.response?.data.message}</p>

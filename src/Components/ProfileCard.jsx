@@ -5,6 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 
 const ProfileCard = ({userFeed,handleShowProfile}) => {
     const {firstName,lastName,photoUrl,about,age,gender}=userFeed 
+  
   return (
     <div className="w-full">
        <div className="flex justify-center">
